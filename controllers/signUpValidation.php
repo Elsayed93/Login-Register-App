@@ -70,7 +70,7 @@ if (
 
         if ($stmt->rowCount()) {
             echo '<h3>You have register successfully</h3>';
-            header("refresh:5;index.php");
+            header("refresh:5;../index.php");
         }
     } catch (PDOException $error) {
         echo "Error: {$error->getMessage()}";
