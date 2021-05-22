@@ -1,7 +1,7 @@
 <?php
 
-require_once 'connectionDB.php';
-require_once 'functions.php';
+require_once '../includes/connectionDB.php';
+require_once '../includes/functions.php';
 
 if (
     isset($_POST['username'], $_POST['email'], $_POST['password'], $_POST['confirmation-password'], $_POST['register'])

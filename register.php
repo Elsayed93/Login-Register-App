@@ -1,13 +1,13 @@
 <?php require_once 'includes/header.php'; ?>
 
-<!-- start of form -->
+<!-- register form -->
 <div class="container">
     <div class="row">
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
             <div class="card card-signin my-5">
                 <div class="card-body">
                     <h5 class="card-title text-center">Register Page</h5>
-                    <form action="signUpValidation.php" method="POST">
+                    <form action="controllers/signUpValidation.php" method="POST">
                         <div class="mb-3">
                             <label for="username" class="form-label">User Name</label>
                             <input name="username" type="text" class="form-control" id="username" placeholder="enter your username">

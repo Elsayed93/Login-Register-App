@@ -14,7 +14,7 @@
 
     <!-- custom css style -->
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="../LRAPP/css/home.css">
+    <link rel="stylesheet" href="css/home.css">
 
 </head>
 
