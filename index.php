@@ -7,7 +7,7 @@
             <div class="card card-signin my-5">
                 <div class="card-body">
                     <h5 class="card-title text-center">Sign In</h5>
-                    <form class="form-signin" action="signInValidation.php" method="POST">
+                    <form class="form-signin" action="controllers/signInValidation.php" method="POST">
                         <div class="form-label-group">
                             <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" required autofocus>
                             <label for="inputEmail">Email address</label>

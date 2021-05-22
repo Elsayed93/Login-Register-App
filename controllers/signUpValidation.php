@@ -20,10 +20,14 @@ if (
     $password = $_POST['password'];
     $confirmPassword = $_POST['confirmation-password'];
 
-    // >>>>>>>>>>>>>>>>>>>>>> data validation
+    // >>>>>>>>>>>>>>>>>>>>>> data validation <<<<<<<<<<<<<<<<<<<<<<<<<< //
 
     //username validation
     $userName = validateData($userName); // trim and Convert special characters to HTML entities
+
+    if (strlen($userName) < 5) {
+        die('username must be more 5 characters');
+    }
 
     if (((int) $userName)) { // if username is number
         echo 'username is not valid, it should not start with number';
@@ -37,12 +41,37 @@ if (
         die;
     }
 
+    // check if username or email is exist
+    $userNameStmt =  $db->prepare("SELECT user_name from users WHERE user_name=:username");
+    $userNameStmt->execute([
+        'username' => $userName
+    ]);
+
+    // $emailStmt =  $db->prepare("SELECT email from users WHERE email=:email");
+    // $emailStmt->execute([
+    //     'email' => $email
+    // ]);
+
+    if ($userNameStmt->rowCount()) {
+        die('user name is exist, please enter another one');
+    } else {
+        $emailStmt =  $db->prepare("SELECT email from users WHERE email=:email");
+        $emailStmt->execute([
+            'email' => $email
+        ]);
+
+        if ($emailStmt->rowCount()) {
+            die('Email is exist, please enter another one');
+        }
+    }
+
+
     // password validation
     $uppercase = preg_match('@[A-Z]@', $password);
     $lowercase = preg_match('@[a-z]@', $password);
     $number    = preg_match('@[0-9]@', $password);
 
-    if (!$uppercase || !$lowercase || !$number || strlen($password) < 8) {
+    if (!$uppercase || !$lowercase || !$number || strlen($password) < 8 || strlen($password) > 30) {
         echo "password does not meet the requirements";
         die;
     }
@@ -56,6 +85,7 @@ if (
         $confirmPassword = password_hash($confirmPassword, PASSWORD_DEFAULT);
     }
 
+    // >>>>>>>>>>>>>>>>>>>>>> data registeration <<<<<<<<<<<<<<<<<<<<<<<<<< //
     try {
         // query 
         $stmt = $db->prepare("INSERT INTO users (`user_name`, `email`, `password`, `confirm_password`)
@@ -77,7 +107,7 @@ if (
         die();
     }
 } else {
-    var_dump($_POST);
-    echo '<hr>';
+    // var_dump($_POST);
+    // echo '<hr>';
     echo 'you should fill all fields';
 }
