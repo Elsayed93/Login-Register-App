@@ -1,5 +1,9 @@
 <?php
 
+session_start();
+// if (isset($_SESSION)) {
+//     session_unset();
+// }
 require_once '../includes/connectionDB.php';
 
 if (isset($_POST['email']) && !empty($_POST['email'])) {
@@ -37,7 +41,20 @@ if ($emailStmt->rowCount()) {
                 'input_email' => $email
             ]);
 
+          
+
+            foreach($activetmt->fetchAll() as $row){
+                // var_dump($row);
+                $_SESSION['logged_in'] = true;
+                $_SESSION['email'] = $row['email'];
+                $_SESSION['password'] = $row['password'];
+                // var_dump( $_SESSION['email']);
+            }
+            // die;
+        
             // header to home page
+            // var_dump($activetmt->fetch());
+            // die;
             header("refresh:.5;../views/home.php");
         } else {
             die('Incorrect Email or Password, Please try again');
