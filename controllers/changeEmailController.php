@@ -9,26 +9,28 @@ if (
     isset($_SESSION['logged_in'])
     && $_SESSION['logged_in'] === true
 ) {
-    // var_dump($_POST);
-    // die;
 
     if (isset($_POST['oldEmail'], $_POST['newEmail'], $_POST['password'])) {
 
-        // var_dump($_SESSION);
-        // echo '<hr>';
-        // var_dump($_POST);
-        // die;
-
-        // die('logged');
         $old_email = $_POST['oldEmail'];
         $new_email = $_POST['newEmail'];
         $hashed_password = $_SESSION['password'];
         $input_password = $_POST['password'];
 
+        // //  >>> if a new email is exist in DB, show error message
+        $chackNewEmailStmt = $db->prepare("SELECT `email` FROM `users` WHERE email=:new_email");
+        $chackNewEmailStmt->execute([
+            'new_email' => $new_email
+        ]);
+
+        if ($chackNewEmailStmt->rowCount()) {
+            die('this email is already taken, please enter another email');
+        }
+        //  >>> end email exist checking
+
         if ($old_email !== $_SESSION['email'] || !password_verify($input_password, $hashed_password)) {
             die('Email or password is an incorrect');
         } else {
-            // die('pass');
             // email validation
             $new_email = filter_var($new_email, FILTER_VALIDATE_EMAIL);
             if (!$new_email) {
@@ -43,6 +45,7 @@ if (
             ]);
 
             if ($updateEmailStmt->rowCount()) {
+                $_SESSION['email'] = $new_email;
                 die('<h3>Email has been updated successfully</h3>');
             } else {
                 die('Unknown Error');

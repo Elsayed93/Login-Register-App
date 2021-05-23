@@ -1,7 +1,8 @@
 <?php
 session_start();
 require_once '../includes/header.php';
-
+// var_dump($_SESSION);
+// die;
 if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
 
 ?>

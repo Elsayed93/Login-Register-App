@@ -1,9 +1,6 @@
 <?php
 
 session_start();
-// if (isset($_SESSION)) {
-//     session_unset();
-// }
 require_once '../includes/connectionDB.php';
 
 if (isset($_POST['email']) && !empty($_POST['email'])) {
