@@ -24,40 +24,38 @@ $emailStmt->execute([
     'input_email' => $email
 ]);
 
-// var_dump($_POST['password']);
-// // var_dump(password_verify($_POST['password'], $emailStmt->fetch()['password']));
-// // var_dump($emailStmt->fetch()['password']);
-// die;
 if ($emailStmt->rowCount() && password_verify($_POST['password'], $emailStmt->fetch()['password'])) {
 
-    $activetmt = $db->prepare("SELECT email, `password` FROM users WHERE email=:input_email AND activated='1'");
-    $activetmt->execute([
+    $activestmt = $db->prepare("SELECT email, `password` FROM users WHERE email=:input_email AND activated='1'");
+    $activestmt->execute([
         'input_email' => $email
     ]);
 
-    if ($activetmt->rowCount()) {
+    if ($activestmt->rowCount()) {
 
-        $password = password_verify($password, $emailStmt->fetch()['password']);
-        if ($password) {
-            // update statement
-            $updateUserStmt = $db->prepare("UPDATE `users` SET `last_login`=CURRENT_TIMESTAMP WHERE email=:input_email");
-            $updateUserStmt->execute([
-                'input_email' => $email
-            ]);
 
-            // store data in session
-            foreach ($activetmt->fetchAll() as $row) {
-                // var_dump($row);
+        foreach ($activestmt->fetchAll() as $row) {
+            $passwordCheck = password_verify($password, $row['password']);
+
+            if ($passwordCheck) {
+                $updateUserStmt = $db->prepare("UPDATE `users` SET `last_login`=CURRENT_TIMESTAMP WHERE email=:input_email");
+                $updateUserStmt->execute([
+                    'input_email' => $email
+                ]);
+                // store data in session
                 $_SESSION['logged_in'] = true;
                 $_SESSION['email'] = $row['email'];
                 $_SESSION['password'] = $row['password'];
-                // var_dump( $_SESSION['email']);
-            }
 
-            // header to home page
-            header("location: ../views/home.php");
-        } else {
-            die('Incorrect Email or Password, Please try again');
+                if (isset($_SESSION['logged_in'], $_SESSION['email'], $_SESSION['password']) && $_SESSION['logged_in'] === true) {
+                    // header to home page
+                    header("location: ../views/home.php");
+                } else {
+                    die('failed to login');
+                }
+            } else {
+                die('Incorrect Email or Password, Please try again');
+            }
         }
     } else {
 ?>
