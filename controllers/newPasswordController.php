@@ -2,10 +2,7 @@
 
 session_start();
 require_once '../includes/connectionDB.php';
-// var_dump($_POST);
-// echo '<hr>';
-// var_dump($_SESSION);
-// die;
+
 if (isset($_SESSION['email'], $_SESSION['token'])) {
     $password = $_POST['newPassword'];
     $confirmPassword = $_POST['confirm-newPassword'];

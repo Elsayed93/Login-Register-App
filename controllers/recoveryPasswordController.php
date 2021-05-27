@@ -19,18 +19,12 @@ if (
     && $email === $_SESSION['email']
     && $token === $_SESSION['token']
 ) {
-    // var_dump('asdad');
-    // die;
-    // $email = filter_var($email, FILTER_VALIDATE_EMAIL);
-    // if (!$email) {
-    //     die('an inappropriate email');
-    // }
     // go to new password form page
     header('location: ../views/recoveryPassword.php');
     if ($tokenEmailCheck->rowCount()) {
         // show new password form
         header('location: ../views/recoveryPassword.php');
-        // validate new password and update it in DB and Delete Token
+        //
     } else {
         die('incorrect email');
     }

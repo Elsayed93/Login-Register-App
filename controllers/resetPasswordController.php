@@ -13,7 +13,8 @@ $emailCheckStmt->execute([
 
 if ($emailCheckStmt->rowCount()) {
     //create token and update it in DB
-    function generateRandomString($length = 10) {
+    function generateRandomString($length = 10)
+    {
         $characters = '0123456789akjhsdajbxnvshjshf7237462387462842098sjflskdfm.sdfmOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
         $randomString = '';
@@ -24,20 +25,12 @@ if ($emailCheckStmt->rowCount()) {
     }
     // $token = random_bytes(20);
     $token = generateRandomString(20);
-    
-    $_SESSION['token']=$token;
-    $_SESSION['email']=$email;
+
+    $_SESSION['token'] = $token;
+    $_SESSION['email'] = $email;
 
     echo "<a href='recoveryPasswordController.php?token={$token}&email={$email}'>{$token} </a>";
-
-    // echo "
-    //     <form method='POST' action='recoveryPasswordController.php'>
-    //         <input type='hidden' value='{$token}'>
-    //         <input type='hidden' value='{$email}'>
-    //         <button type='submit' style='background-color: white; border: none;text-decoration: underline;cursor: pointer;color:blue;'>{$token}</button>
-            
-    //     </form>
-    // ";
+    //
 } else {
     die('An incorrect Email');
 }

@@ -102,12 +102,12 @@ if (
             echo '<h3>You have register successfully</h3>';
             header("refresh:5;../index.php");
         }
+        //
     } catch (PDOException $error) {
         echo "Error: {$error->getMessage()}";
         die();
     }
+    //
 } else {
-    // var_dump($_POST);
-    // echo '<hr>';
     echo 'you should fill all fields';
 }
