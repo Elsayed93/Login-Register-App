@@ -1,7 +1,15 @@
 <?php
-
+session_start();
 require_once '../includes/header.php';
 
+if(isset($_SESSION)){
+    echo "
+    <div class='container mt-3'>
+        <p class='lead'>you are logging in, go to home ? </p><a href='../index.php' class='btn btn-primary'>home </a>
+    </div>
+    ";
+    die;
+}
 ?>
 </head>
 

@@ -1,13 +1,18 @@
 <?php
 
-session_start();
 require_once '../includes/connectionDB.php';
 
-if (isset($_SESSION['email'], $_SESSION['token'])) {
+if (
+    isset($_POST['newPassword'], $_POST['confirm-newPassword'])
+    && !empty($_POST['newPassword'])
+    && !empty($_POST['confirm-newPassword'])
+) {
     $password = $_POST['newPassword'];
     $confirmPassword = $_POST['confirm-newPassword'];
-    $email = $_SESSION['email'];
-    $token = $_SESSION['token'];
+    $token = $_POST['token'];
+    $email = $_POST['email'];
+    // $email = $_SESSION['email'];
+    // $token = $_SESSION['token'];
 
     // password validation
     $uppercase = preg_match('@[A-Z]@', $password);
@@ -28,7 +33,7 @@ if (isset($_SESSION['email'], $_SESSION['token'])) {
         $confirmPassword = password_hash($confirmPassword, PASSWORD_DEFAULT);
     }
 
-    $newPAssword = $db->prepare("UPDATE `users` SET `password`=:input_password, confirm_password=:confirm_password, `token`=:token WHERE email=:get_email");
+    $newPAssword = $db->prepare("UPDATE `users` SET `password`=:input_password, confirm_password=:confirm_password WHERE email=:get_email AND  `token`=:token");
     $newPAssword->execute([
         'input_password' => $password,
         'confirm_password' => $confirmPassword,
@@ -37,8 +42,17 @@ if (isset($_SESSION['email'], $_SESSION['token'])) {
     ]);
 
     if ($newPAssword->rowCount()) {
-        session_destroy();
-        die('password has been changed successfully, please try <a href="../index.php"> login </a>');
+        $tokenDelete = $db->prepare("UPDATE `users` SET `token`=null WHERE `email`=:get_email");
+        $tokenDelete->execute([
+            'get_email' => $email,
+        ]);
+
+        if ($tokenDelete->rowCount()) {
+            die('password has been changed successfully, please try <a href="../index.php"> login </a>');
+            //
+        } else {
+            die('invalid token');
+        }
         //
     } else {
         die('unknown error');
