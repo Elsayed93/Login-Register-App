@@ -31,6 +31,9 @@ if (
         if (strlen($newUserName) < 5) { // user name length
             die('user name should at least 5 characters');
         }
+        if (strlen($newUserName) > 30) { // user name length
+            die('user name must be no more than 30 characters');
+        }
         // >>  end user name validation 
 
         // check if user name is exist in DB

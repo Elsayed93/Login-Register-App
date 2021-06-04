@@ -28,6 +28,9 @@ if (
     if (strlen($userName) < 5) {
         die('username must be more 5 characters');
     }
+    if (strlen($userName) > 30) { // user name length
+        die('user name must be no more than 30 characters');
+    }
 
     if (((int) $userName)) { // if username is number
         echo 'username is not valid, it should not start with number';
