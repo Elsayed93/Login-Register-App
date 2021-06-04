@@ -26,13 +26,23 @@ if (
         // >> user name validation
         $newUserName = validateData($newUserName); // trim and special html characters
         if ((int) $newUserName) { // 
-            var_dump((int) $newUserName);
             die('user name should start with character not number');
         }
         if (strlen($newUserName) < 5) { // user name length
             die('user name should at least 5 characters');
         }
         // >>  end user name validation 
+
+        // check if user name is exist in DB
+        $userNameCheck = $db->prepare("SELECT `user_name` FROM `users` WHERE `user_name`=:newUserName");
+        $userNameCheck->execute([
+            'newUserName' => $newUserName
+        ]);
+
+        if ($userNameCheck->rowCount()) {
+            die('this user name is exist, please choose another one');
+        }
+
 
         // update new user name
         $userNameUpdate = $db->prepare("UPDATE `users` SET `user_name`=:new_userName WHERE `email`=:email");

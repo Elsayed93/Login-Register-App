@@ -44,6 +44,7 @@ if ($emailStmt->rowCount() && password_verify($_POST['password'], $emailStmt->fe
                 ]);
                 // store data in session
                 $_SESSION['logged_in'] = true;
+                // $_SESSION['user_name'] = $row['email'];
                 $_SESSION['email'] = $row['email'];
                 $_SESSION['password'] = $row['password'];
 
