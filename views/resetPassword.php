@@ -1,8 +1,10 @@
 <?php
 session_start();
 require_once '../includes/header.php';
+// var_dump($_SESSION);
+// die;
 
-if(isset($_SESSION)){
+if(isset($_SESSION) && !empty($_SESSION)){
     echo "
     <div class='container mt-3'>
         <p class='lead'>you are logging in, go to home ? </p><a href='../index.php' class='btn btn-primary'>home </a>

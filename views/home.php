@@ -22,11 +22,15 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
                     <a href="../controllers/logOut.php" class="btn btn-primary">Log Out</a>
                 </div>
                 <div class="col-md-3">
-                    <a href="../views/changeEmail.php" class="btn btn-primary">Change My Email</a>
+                    <a href="changeEmail.php" class="btn btn-primary">Change My Email</a>
                 </div>
 
                 <div class="col-md-3">
-                    <a href="../views/changePassword.php" class="btn btn-primary">Change My Password</a>
+                    <a href="changePassword.php" class="btn btn-primary">Change My Password</a>
+                </div>
+
+                <div class="col-md-3">
+                    <a href="changeUserName.php" class="btn btn-primary">Change User Name</a>
                 </div>
             </div>
         </div>
