@@ -2,6 +2,7 @@
 
 session_start();
 require_once '../includes/header.php';
+require_once '../includes/navBar.php';
 
 $email = $_SESSION['email'];
 $password = $_SESSION['password'];

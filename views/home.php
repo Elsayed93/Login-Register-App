@@ -2,6 +2,7 @@
 
 session_start();
 require_once '../includes/header.php';
+require_once '../includes/navBar.php';
 
 if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
 
@@ -13,11 +14,12 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
         <div class="container mt-3">
 
             <div class="row">
-                <div class="col-4">
-                    <h2> Welcome to home page </h2>
+                <div>
+                    <h2> Welcome <span style="text-decoration: underline;"> <?php echo $userName['user_name'];  // get user name from navBar page
+                                                                            ?> </span> to home page </h2>
                 </div>
             </div>
-            <div class="row mt-3">
+            <!-- <div class="row mt-3">
                 <div class="col-md-2">
                     <a href="../controllers/logOut.php" class="btn btn-primary">Log Out</a>
                 </div>
@@ -32,7 +34,7 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
                 <div class="col-md-3">
                     <a href="changeUserName.php" class="btn btn-primary">Change User Name</a>
                 </div>
-            </div>
+            </div> -->
         </div>
 
 
