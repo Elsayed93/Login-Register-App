@@ -26,7 +26,7 @@ $emailStmt->execute([
 
 if ($emailStmt->rowCount() && password_verify($_POST['password'], $emailStmt->fetch()['password'])) {
 
-    $activestmt = $db->prepare("SELECT email, `password` FROM users WHERE email=:input_email AND activated='1'");
+    $activestmt = $db->prepare("SELECT * FROM users WHERE email=:input_email AND activated='1'");
     $activestmt->execute([
         'input_email' => $email
     ]);
@@ -35,6 +35,8 @@ if ($emailStmt->rowCount() && password_verify($_POST['password'], $emailStmt->fe
 
 
         foreach ($activestmt->fetchAll() as $row) {
+            // var_dump($row);
+            // die;
             $passwordCheck = password_verify($password, $row['password']);
 
             if ($passwordCheck) {
@@ -44,9 +46,11 @@ if ($emailStmt->rowCount() && password_verify($_POST['password'], $emailStmt->fe
                 ]);
                 // store data in session
                 $_SESSION['logged_in'] = true;
-                // $_SESSION['user_name'] = $row['email'];
+                $_SESSION['user_id'] = $row['id'];
+                $_SESSION['user_name'] = $row['user_name'];
                 $_SESSION['email'] = $row['email'];
                 $_SESSION['password'] = $row['password'];
+                $_SESSION['privilege'] = $row['privilege'];
 
                 if (isset($_SESSION['logged_in'], $_SESSION['email'], $_SESSION['password']) && $_SESSION['logged_in'] === true) {
                     // header to home page

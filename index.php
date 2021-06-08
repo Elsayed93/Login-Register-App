@@ -13,6 +13,9 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
     </head>
 
     <body>
+    <!-- 
+        <?php require_once 'includes/navBar.php' ?>
+ -->
         <div class="container">
             <div class="row">
                 <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
@@ -35,7 +38,7 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
                             <label class="custom-control-label" for="customCheck1">Remember password</label>
                         </div> -->
                                 <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
-                               
+
                                 <div class="form-label-group mt-2">
                                     <a href="views/resetPassword.php">Reset Password</a>
                                 </div>

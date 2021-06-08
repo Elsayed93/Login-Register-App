@@ -12,6 +12,9 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
     </head>
 
     <body>
+    <!-- 
+    <?php require_once 'includes/navBar.php' ?>
+     -->
         <!-- register form -->
         <div class="container">
             <div class="row">

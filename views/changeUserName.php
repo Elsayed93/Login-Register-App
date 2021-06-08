@@ -2,7 +2,6 @@
 
 session_start();
 require_once '../includes/header.php';
-require_once '../includes/navBar.php';
 
 $email = $_SESSION['email'];
 $password = $_SESSION['password'];
@@ -13,6 +12,8 @@ if (isset($_SESSION) && $_SESSION['logged_in'] === true) {
     </head>
 
     <body>
+    <?php require_once '../includes/navBar.php'; ?>
+
         <div class="container">
             <div class="row">
                 <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">

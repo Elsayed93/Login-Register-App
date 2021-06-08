@@ -1,10 +1,13 @@
 <?php
 
 session_start();
-if(isset($_SESSION)){
+
+if (isset($_SESSION)) {
     
     session_unset();
 }
-
-// var_dump($_SESSION);
-echo '<h3>You are logged out, We hope to see you soon :)';
+require_once '../includes/navBar.php';
+?>
+<div class="container mt-3">
+    <h3>You are logged out, We hope to see you soon </h3>
+</div>
