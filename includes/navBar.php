@@ -40,7 +40,7 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
                             // die;
                             if ($_SESSION['privilege'] == 1) {
                             ?>
-                                <li><a class="dropdown-item" href="../views/changeUserName.php">All Posts</a></li>
+                                <li><a class="dropdown-item" href="../controllers/allPostsController.php">All Posts</a></li>
                             <?php
                             }
                             ?>

@@ -12,7 +12,7 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
         <?php require_once '../includes/navBar.php'; ?>
 
         <div class="container mt-3">
-            <?php if (isset($_SESSION['success_postCreated'])) {
+            <?php if (isset($_SESSION['success_postCreated']) && !empty($_SESSION['success_postCreated'])) {
             ?>
                 <div class="row mt-3">
                     <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
@@ -25,7 +25,7 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
                     </div>
                 </div>
             <?php
-            } elseif (isset($_SESSION['failed_postCreated'])) {
+            } elseif (isset($_SESSION['failed_postCreated']) && !empty($_SESSION['failed_postCreated'])) {
             ?>
                 <div class="row mt-3">
                     <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
