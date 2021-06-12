@@ -28,6 +28,20 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
                     </div>
                 </div>
             <?php
+            } else if (isset($_SESSION['success_delete'])) {
+            ?>
+                <div class="row mt-3">
+                    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                        <div class="alert alert-success" role="alert">
+                            <?php
+                            echo $_SESSION['success_delete'];
+                            unset($_SESSION['success_delete']);
+                            ?>
+                        </div>
+                    </div>
+                </div>
+
+            <?php
             }
             ?>
 
@@ -50,7 +64,7 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
                                 <div class="card-footer">
                                     <div>
                                         <a href="../../views/Posts/edit.php?id=<?php echo $post['id'] ?>" class="btn btn-primary btn-sm">Edit</a>
-                                        <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                                        <a href="../../controllers/Posts/deleteController.php?id=<?php echo $post['id'] ?>" class="btn btn-danger btn-sm">Delete</a>
                                     </div>
                                     <small class="text-muted"><strong>updated At:</strong> <?php echo $post['updated_at'] ?></small>
                                     <br>

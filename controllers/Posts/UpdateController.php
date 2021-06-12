@@ -50,8 +50,8 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
         ]);
 
         if ($updatePost->rowCount()) {
-            $_SESSION['success_update'] = 'Post has been Updated Successfully';
-            header('location: ../../views/Posts/allPosts.php');
+           $_SESSION['success_update'] = 'Post has been Updated Successfully';
+            header('location: ../../views/Posts/allPosts.php'); 
         }else{
             $_SESSION['errors'] = 'Post has not been Updated Successfully';
             header('location: ../../views/Posts/edit.php');
