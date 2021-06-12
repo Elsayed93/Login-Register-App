@@ -1,9 +1,8 @@
 <?php
 
 session_start();
-// var_dump($_SESSION);
-// die;
-require_once '../includes/header.php';
+
+require_once '../../includes/header.php';
 if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
 
 ?>
@@ -13,14 +12,32 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
     <body>
         <?php
 
-        require_once '../includes/navBar.php';
+        require_once '../../includes/navBar.php';
+        require_once '../../controllers/Posts/allPostsController.php';
         if (isset($_SESSION['all_posts']) && $_SESSION['all_posts'] !== false) {
+            if (isset($_SESSION['success_update'])) {
         ?>
+                <div class="row mt-3">
+                    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                        <div class="alert alert-success" role="alert">
+                            <?php
+                            echo $_SESSION['success_update'];
+                            unset($_SESSION['success_update']);
+                            ?>
+                        </div>
+                    </div>
+                </div>
+            <?php
+            }
+            ?>
+
             <div class="container mt-5">
                 <div class="row row-cols-1 row-cols-md-2 g-4">
                     <?php
                     foreach ($_SESSION['all_posts'] as $key => $post) {
                         # code...
+                        // var_dump($post);
+                        // die;
 
                     ?>
                         <div class="col">
@@ -31,6 +48,10 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
                                     <p class="card-text"><?php echo $post['content'] ?></p>
                                 </div>
                                 <div class="card-footer">
+                                    <div>
+                                        <a href="../../views/Posts/edit.php?id=<?php echo $post['id'] ?>" class="btn btn-primary btn-sm">Edit</a>
+                                        <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                                    </div>
                                     <small class="text-muted"><strong>updated At:</strong> <?php echo $post['updated_at'] ?></small>
                                     <br>
                                     <small class="text-muted"><strong>Created At:</strong> <?php echo $post['created_at'] ?></small>
@@ -49,6 +70,7 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
         ?>
 
     </body>
+
     </html>
 
 <?php

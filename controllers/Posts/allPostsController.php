@@ -1,7 +1,7 @@
 <?php
 
-session_start();
-require_once '../includes/connectionDB.php';
+// session_start();
+require_once '../../includes/connectionDB.php';
 
 try {
     //code...
@@ -10,7 +10,7 @@ try {
     $getAllPosts->execute();
 
     $_SESSION['all_posts'] = $getAllPosts->fetchAll();
-    header('location: ../views/allPosts.php');
+    // header('location: ../views/Posts/allPosts.php');
 } catch (\PDOException $th) {
     //throw $th;
     die('Error: ' . $th->getMessage());

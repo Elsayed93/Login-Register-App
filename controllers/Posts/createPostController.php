@@ -1,8 +1,8 @@
 <?php
 
 session_start();
-require_once '../includes/connectionDB.php';
-require_once '../includes/functions.php';
+require_once '../../includes/connectionDB.php';
+require_once '../../includes/functions.php';
 
 if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
     if (
@@ -53,7 +53,7 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
         // 
     } else {
         $_SESSION['errors'] = 'You should fill all Inputs';
-        header('location: ../views/createPost.php');
+        header('location: ../views/Posts/createPost.php');
     }
 } else {
     die('You have to loggin ');

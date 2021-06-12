@@ -3,10 +3,6 @@
 require_once 'connectionDB.php';
 require_once 'header.php';
 
-// echo '<pre>';
-// print_r($_SERVER);
-// echo '</pre>';
-// die;
 if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
     $userName = $_SESSION['user_name'];
 }
@@ -34,13 +30,13 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
                             ?>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="../views/createPost.php">create a Post</a></li>
+                            <li><a class="dropdown-item" href="../views/Posts/createPost.php">create a Post</a></li>
                             <?php
                             // var_dump($_SESSION);
                             // die;
                             if ($_SESSION['privilege'] == 1) {
                             ?>
-                                <li><a class="dropdown-item" href="../controllers/allPostsController.php">All Posts</a></li>
+                                <li><a class="dropdown-item" href="../views/Posts/allPosts.php">All Posts</a></li>
                             <?php
                             }
                             ?>
@@ -72,10 +68,6 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
             <?php
         }
             ?>
-            <!-- <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form> -->
             </div>
     </div>
 </nav>
