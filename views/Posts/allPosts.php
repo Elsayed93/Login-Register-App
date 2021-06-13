@@ -50,16 +50,14 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
                     <?php
                     foreach ($_SESSION['all_posts'] as $key => $post) {
                         # code...
-                        // var_dump($post);
-                        // die;
 
                     ?>
                         <div class="col">
-                            <div class="card">
+                            <div class="card" style="height: 200px;">
                                 <div class="card-body">
                                     <h5 class="card-title"><?php echo $post['title'] ?></h5>
                                     <h6 class="card-subtitle mb-2 text-muted"><?php echo $post['user_name'] ?></h6>
-                                    <p class="card-text"><?php echo $post['content'] ?></p>
+                                    <p class="card-text"><?php echo substr($post['content'], 0, 30), '......', '<a href="show.php?id=' . $post['id'] . '">see more </a>'; ?></p>
                                 </div>
                                 <div class="card-footer">
                                     <div>
@@ -89,6 +87,6 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
 
 <?php
 } else {
-    die('<p class="lead">You need to <a href="../index.php">login</a>');
+    die('<p class="lead">You need to <a href="../../index.php">login</a>');
 }
 ?>

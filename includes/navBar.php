@@ -15,7 +15,7 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
     <div class="container-fluid">
         <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
         ?>
-            <a class="navbar-brand ms-3" href="../index.php">Home</a>
+            <a class="navbar-brand ms-3" href="/php/Login-Register-App/index.php">Home</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -30,23 +30,23 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
                             ?>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="../views/Posts/createPost.php">create a Post</a></li>
+                            <li><a class="dropdown-item" href="/php/Login-Register-App/views/Posts/createPost.php">create a Post</a></li>
                             <?php
                             // var_dump($_SESSION);
                             // die;
                             if ($_SESSION['privilege'] == 1) {
                             ?>
-                                <li><a class="dropdown-item" href="../views/Posts/allPosts.php">All Posts</a></li>
+                                <li><a class="dropdown-item" href="/php/Login-Register-App/views/Posts/allPosts.php">All Posts</a></li>
                             <?php
                             }
                             ?>
-                            <li><a class="dropdown-item" href="../views/changeUserName.php">Change User Name</a></li>
-                            <li><a class="dropdown-item" href="../views/changeEmail.php">Change My Email</a></li>
-                            <li><a class="dropdown-item" href="../views/changePassword.php">Change My Password</a></li>
+                            <li><a class="dropdown-item" href="/php/Login-Register-App/views/changeUserName.php">Change User Name</a></li>
+                            <li><a class="dropdown-item" href="/php/Login-Register-App/views/changeEmail.php">Change My Email</a></li>
+                            <li><a class="dropdown-item" href="/php/Login-Register-App/views/changePassword.php">Change My Password</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="../controllers/logOut.php">Log Out</a></li>
+                            <li><a class="dropdown-item" href="/php/Login-Register-App/controllers/logOut.php">Log Out</a></li>
                         </ul>
                     </li>
                 </ul>

@@ -5,9 +5,11 @@ require_once '../../includes/connectionDB.php';
 
 try {
     //code...
-    // get all posts
-    $getAllPosts = $db->prepare("SELECT * FROM `posts`");
-    $getAllPosts->execute();
+    // get all user's posts
+    $getAllPosts = $db->prepare("SELECT * FROM `posts` WHERE `user_id`=:userId");
+    $getAllPosts->execute([
+        ':userId' => $_SESSION['user_id'],
+    ]);
 
     $_SESSION['all_posts'] = $getAllPosts->fetchAll();
     // header('location: ../views/Posts/allPosts.php');

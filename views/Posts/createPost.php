@@ -34,7 +34,7 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
                     <div class="card card-signin my-5">
                         <div class="card-body">
                             <h5 class="card-title text-center">Create A Post</h5>
-                            <form action="../controllers/Posts/createPostController.php" method="POST" autocomplete="off">
+                            <form action="../../controllers/Posts/createPostController.php" method="POST" autocomplete="off">
                                 <div class="mb-3">
                                     <label for="post_title" class="form-label">Post Title</label>
                                     <input type="text" name="title" class="form-control" id="post_title" placeholder="Post Title">
@@ -57,6 +57,6 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
 <?php
 } else {
 ?>
-    <p class="lead"> You have to <a href="../index.php">Login</a></p>
+    <p class="lead"> You have to <a href="../../index.php">Login</a></p>
 <?php
 }

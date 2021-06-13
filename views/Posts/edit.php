@@ -6,9 +6,10 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
     if (isset($_GET) && !empty($_GET['id'])) {
         // get post with id 
         require_once '../../includes/connectionDB.php';
-        $getPost = $db->prepare("SELECT * From `posts` WHERE id=:id");
+        $getPost = $db->prepare("SELECT * From `posts` WHERE id=:id AND `user_id`=:userId");
         $getPost->execute([
             ':id' => $_GET['id'],
+            ':userId' => $_SESSION['user_id'],
         ]);
 
         $post = $getPost->fetch();
@@ -81,6 +82,6 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
 <?php
 } else {
 ?>
-    <p class="lead"> You have to <a href="../index.php">Login</a></p>
+    <p class="lead"> You have to <a href="../../index.php">Login</a></p>
 <?php
 }
