@@ -5,6 +5,16 @@ require_once 'header.php';
 
 if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
     $userName = $_SESSION['user_name'];
+
+    $getProfilePic = $db->prepare("SELECT image FROM `users` WHERE id=:userId");
+    $getProfilePic->execute([
+        ':userId' =>  $_SESSION['user_id']
+    ]);
+
+    $profile_pic = $getProfilePic->fetch();
+    if (!$profile_pic) {
+        $profile_pic = 'error loading image';
+    }
 }
 
 ?>
@@ -15,7 +25,7 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
     <div class="container-fluid">
         <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
         ?>
-            <a class="navbar-brand ms-3" href="/php/Login-Register-App/index.php">Home</a>
+            <a class="navbar-brand ms-3" href="/php/Login-Register-App/index.php"><img src="/php/Login-Register-App/images/<?php echo $profile_pic['image'] ?>" alt="profile picture" id="profilePic"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -40,6 +50,7 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
                             <?php
                             }
                             ?>
+                            <li><a class="dropdown-item" href="/php/Login-Register-App/views/changeProfileImage.php">Change profile Image</a></li>
                             <li><a class="dropdown-item" href="/php/Login-Register-App/views/changeUserName.php">Change User Name</a></li>
                             <li><a class="dropdown-item" href="/php/Login-Register-App/views/changeEmail.php">Change My Email</a></li>
                             <li><a class="dropdown-item" href="/php/Login-Register-App/views/changePassword.php">Change My Password</a></li>

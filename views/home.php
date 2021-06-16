@@ -31,13 +31,28 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
                     <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
                         <div class="alert alert-danger" role="alert">
                             <?php
-                            echo $_SESSION['success_postCreated'];
-                            unset($_SESSION['success_postCreated']);
+                            echo $_SESSION['failed_postCreated'];
+                            unset($_SESSION['failed_postCreated']);
                             ?>
                         </div>
                     </div>
                 </div>
             <?php
+            } elseif (isset($_SESSION['image_upload_success']) && !empty($_SESSION['image_upload_success'])) {
+            ?>
+                <div class="row mt-3">
+                    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                        <div class="alert alert-success" role="alert">
+                            <?php
+                            echo $_SESSION['image_upload_success'];
+                            unset($_SESSION['image_upload_success']);
+                            ?>
+                        </div>
+                    </div>
+                </div>
+
+            <?php
+
             }
             ?>
 
