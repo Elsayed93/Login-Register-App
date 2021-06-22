@@ -1,12 +1,6 @@
 <?php
 
 session_start();
-// var_dump($_POST);
-// echo '<hr>';
-// var_dump($_FILES);
-// echo '<hr>';
-// var_dump($_SESSION);
-// die;
 
 if (isset($_FILES['profileImage']) && !empty($_FILES['profileImage'])) {
 
