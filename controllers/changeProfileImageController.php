@@ -23,14 +23,12 @@ if (isset($_FILES['profileImage']) && !empty($_FILES['profileImage'])) {
     }
 
     // move image from tmp path to server directory
-
     if ($error == UPLOAD_ERR_OK) {
         $tmp_name = $_FILES["profileImage"]["tmp_name"];
         // basename() may prevent filesystem traversal attacks;
         // further validation/sanitation of the filename may be appropriate
         $name = basename($_FILES["profileImage"]["name"]);
-        // var_dump($name);
-        // die;
+   
         // change image name to be random 
         $name = time() . rand(1, 100) . $name;
         if (move_uploaded_file($tmp_name, "../images/$name")) {
